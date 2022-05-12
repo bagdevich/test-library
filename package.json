@@ -3,7 +3,8 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/bagdevich"
   },
-  "version": "0.0.9",
+  "homepage": "http://bagdevich.github.io/test-library",
+  "version": "0.0.10",
   "description": "",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -14,7 +15,9 @@
   "scripts": {
     "rollup": "rollup -c",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "predeploy": "npm run build-storybook",
+    "deploy-storybook": "gh-pages -d storybook-static"
   },
   "author": "",
   "license": "ISC",
@@ -38,6 +41,7 @@
     "@types/react": "^17.0.0",
     "babel-loader": "^8.2.5",
     "classnames": "^2.3.1",
+    "gh-pages": "^4.0.0",
     "react-docgen-typescript": "^2.2.2",
     "rollup": "^2.72.1",
     "rollup-plugin-copy-assets": "^2.0.3",

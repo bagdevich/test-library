@@ -7,6 +7,7 @@ import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import sass from "rollup-plugin-sass";
 import copy from "rollup-plugin-copy-assets";
 import svgr from "@svgr/rollup";
+// import babel from "@rollup/plugin-babel";
 
 const packageJson = require("./package.json");
 
@@ -18,6 +19,7 @@ export default [
         file: packageJson.main,
         format: "cjs",
         sourcemap: true,
+        exports: "named",
       },
       {
         file: packageJson.module,
@@ -26,9 +28,10 @@ export default [
       },
     ],
     plugins: [
-      peerDepsExternal(),
-      resolve(),
       commonjs(),
+      peerDepsExternal(),
+      resolve({ jsnext: true, main: true, browser: true }),
+      // babel({ babelHelpers: "bundled" }),
       sass({ insert: true }),
       typescript({ tsconfig: "./tsconfig.json" }),
       copy({

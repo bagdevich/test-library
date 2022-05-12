@@ -15,7 +15,7 @@ const styles = () => ({
       fontFamily: "Lato-Bold, sans-serif",
       fontSize: "14px",
       textTransform: "none",
-      color: "Colors.white",
+      color: Colors.white,
       boxSizing: "border-box",
     },
   },

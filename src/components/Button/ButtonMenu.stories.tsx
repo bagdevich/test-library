@@ -39,19 +39,16 @@ const Template: ComponentStory<typeof LibButton> = (args) => (
 export const Button = Template.bind({});
 
 Button.args = {
-  children: ["ddd", <LibButton.Item>ddd</LibButton.Item>],
-  backgroundColor: "green",
+  children: [
+    "button",
+    <LibButton.Item>Item1</LibButton.Item>,
+    <LibButton.Item>Item2</LibButton.Item>,
+  ],
+  buttonBackgroundColor: null,
   styleClass: "active",
-  loading: false,
-  backButton: false,
 };
 
-Button.parameters = {
-  docs: {
-    source: {
-      state: "open",
-      type: "dynamic",
-      // code: "<LibButton>ddd <LibButton.Item>ddd</LibButton.Item></LibButton>",
-    },
-  },
+Button.argTypes = {
+  buttonBackgroundColor: { control: { type: "color" } },
+  children: { control: { disable: true } },
 };

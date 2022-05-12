@@ -6,6 +6,7 @@ import { MenuProps } from "@material-ui/core";
 import Button, { TButton } from "./Button";
 
 import useStyles, { StyledMenu } from "./ButtonMenu.styles";
+import ColorStyles from "styles/Color.styles";
 
 interface IButtonMenu {
   styleClass: TButton["styleClass"];
@@ -22,7 +23,7 @@ type ButtonMenuType = React.FC<IButtonMenu> & { Item: ItemType };
 
 type ReactChild = React.ReactElement<any>;
 
-export const ButtonMenu: React.FC<ButtonMenuType> = ({
+export const ButtonMenu: ButtonMenuType = ({
   children,
   buttonClasses,
   styleClass,

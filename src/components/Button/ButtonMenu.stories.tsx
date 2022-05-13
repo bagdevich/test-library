@@ -36,9 +36,9 @@ const Template: ComponentStory<typeof LibButton> = (args) => (
 );
 
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-export const Button = Template.bind({});
+export const ButtonMenu = Template.bind({});
 
-Button.args = {
+ButtonMenu.args = {
   children: [
     "button",
     <LibButton.Item>Item1</LibButton.Item>,
@@ -48,7 +48,7 @@ Button.args = {
   styleClass: "active",
 };
 
-Button.argTypes = {
+ButtonMenu.argTypes = {
   buttonBackgroundColor: { control: { type: "color" } },
   children: { control: { disable: true } },
 };

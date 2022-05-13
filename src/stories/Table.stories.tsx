@@ -1,12 +1,13 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import ZTable, { TableProps } from "./Table";
+import ZTable, { TableProps } from "../components/Table/Table";
+import ZSearch, { SearchProps } from "../components/Search/Search";
 import {
   fieldExtractor,
   headCells,
   mockData,
-} from "../../examples/Table/table.config";
+} from "../examples/Table/table.config";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {

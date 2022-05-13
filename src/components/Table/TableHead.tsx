@@ -8,23 +8,19 @@ import {
 } from "@material-ui/core";
 
 import useStyles from "./Table.styles";
-
-export interface TableHeadProps {
-  orderDirection: any;
-  orderField: string;
-  onRequestSort: (event: SyntheticEvent, property: string) => void;
-  headCells: any;
-}
+import { TableHeadProps } from "./types";
 
 const TableHead = ({
   headCells,
   orderDirection,
   orderField,
   onRequestSort,
+  customStyles = {},
 }: TableHeadProps) => {
   const classes = useStyles();
+
   const createSortHandler = (property) => (event) => {
-    onRequestSort(event, property);
+    onRequestSort?.(event, property);
   };
 
   return (
@@ -38,11 +34,13 @@ const TableHead = ({
             classes={{
               root: classnames(
                 classes.cellRootHead,
-                classes[headCell?.extraClass]
+                customStyles[headCell?.extraClass] ||
+                  classes[headCell?.extraClass]
               ),
             }}
           >
             <TableSortLabel
+              disabled={!headCell.sort}
               active={orderField === headCell.id}
               direction={orderField === headCell.id ? orderDirection : "asc"}
               onClick={createSortHandler(headCell.id)}

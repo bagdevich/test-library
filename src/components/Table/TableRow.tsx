@@ -1,21 +1,8 @@
-import React, { useState, useRef } from "react";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
+import React from "react";
 import { TableCell, TableRow as MUITableRow } from "@material-ui/core";
 
 import useStyles from "./Table.styles";
-
-export interface CellItemProps {
-  value: any;
-  onCellClick?: any;
-
-  className?: string;
-}
-
-export interface TableRowProps {
-  data: CellItemProps;
-  onClick: any;
-  keyField: any;
-}
+import { TableRowProps } from "./types";
 
 const TableRow: React.FC<TableRowProps> = ({ data, onClick, keyField }) => {
   const classes = useStyles();
@@ -32,7 +19,6 @@ const TableRow: React.FC<TableRowProps> = ({ data, onClick, keyField }) => {
     >
       {Object.entries(data).map(([item, itemValue]) => (
         <TableCell
-          // align="left"
           classes={{
             root: classes.cellRoot,
           }}
@@ -40,13 +26,6 @@ const TableRow: React.FC<TableRowProps> = ({ data, onClick, keyField }) => {
           onClick={() => itemValue.onCellClick(keyField)}
         >
           {itemValue.value}
-          {/* <MoreVertIcon
-            className={classes.rowMenuIcon}
-            ref={anchorRef}
-            role="button"
-            aria-hidden="true"
-            onClick={() => handleToggle(item?._id)}
-          /> */}
         </TableCell>
       ))}
     </MUITableRow>

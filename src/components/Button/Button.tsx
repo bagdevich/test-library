@@ -73,8 +73,6 @@ const Button = React.forwardRef<HTMLButtonElement, TButton>(
       backgroundColor,
     });
 
-    console.log(styleClass);
-    console.log(backgroundColor);
     const customRootClasses = classNames(classes[styleClass], rootClasses);
 
     return (

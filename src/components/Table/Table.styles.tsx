@@ -48,25 +48,6 @@ const useStyles = makeStyles(() => ({
     },
   },
 
-  // STATUS BADGE
-  userStatusActive: {
-    height: "22px",
-    padding: "5px 8px 5px 8px",
-    backgroundColor: Colors.greenTransparent,
-    borderRadius: "6px",
-    fontFamily: "Lato-Bold, sans-serif",
-    fontSize: "12px",
-    color: Colors.darkestGreen,
-  },
-  userStatusInactive: {
-    height: "22px",
-    padding: "5px 8px 5px 8px",
-    backgroundColor: Colors.chartGrey,
-    borderRadius: "6px",
-    fontFamily: "Lato-Bold, sans-serif",
-    fontSize: "12px",
-    color: Colors.textGrey,
-  },
   itemContainer: {
     minHeight: "172px",
     borderRadius: "16px",

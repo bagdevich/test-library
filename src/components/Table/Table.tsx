@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Table as MUITable,
   TableBody,
@@ -6,50 +6,33 @@ import {
   TablePagination,
 } from "@material-ui/core";
 
-import { TOrder } from "./types";
-
 import TableHead from "./TableHead";
-import TableRow, { CellItemProps } from "./TableRow";
+import TableRow from "./TableRow";
 import useStyles from "./Table.styles";
 import { dataNormalizer } from "./helpers";
-
-export interface TableProps {
-  data: any[];
-  pagination?: boolean;
-  headConfig: any;
-  onRowClick?: any;
-  keyField: string;
-  fieldExtractor: any;
-}
+import { defaultPagination } from "./constants";
+import { TableProps } from "./types";
 
 const Table: React.FC<TableProps> = ({
   data,
-  pagination,
+  sort,
+  pagination = defaultPagination,
   headConfig,
   onRowClick,
   keyField,
   fieldExtractor,
+  customHeaderStyles,
 }) => {
   const classes = useStyles();
-  const [page, setPage] = useState<number>(0);
-  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
-  const [orderDirection, setOrderDirection] = useState<TOrder>("desc");
-  const [orderField, setOrderField] = useState<string>("created");
 
-  const handleChangePage = (_, newPage: number) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event: any) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
-
-  const handleRequestSort = (event: any, property: any) => {
-    const isAsc = orderField === property && orderDirection === "asc";
-    setOrderDirection(isAsc ? "desc" : "asc");
-    setOrderField(property);
-  };
+  const {
+    page,
+    rowsPerPage,
+    rowsPerPageOptions,
+    onChangePage,
+    onChangeRowsPerPage,
+    labelRowsPerPage,
+  } = pagination;
 
   return (
     <div className={classes.tableContainer}>
@@ -58,9 +41,10 @@ const Table: React.FC<TableProps> = ({
           {data?.length > 0 && (
             <TableHead
               headCells={headConfig}
-              orderDirection={orderDirection}
-              orderField={orderField}
-              onRequestSort={handleRequestSort}
+              orderDirection={sort?.orderDirection}
+              orderField={sort?.orderField}
+              onRequestSort={sort?.onSort}
+              customStyles={customHeaderStyles}
             />
           )}
           <TableBody>
@@ -78,17 +62,17 @@ const Table: React.FC<TableProps> = ({
           </TableBody>
         </MUITable>
       </TableContainer>
-      {pagination && (
+      {pagination?.enabled && (
         <TablePagination
           classes={{ toolbar: classes.pagination }}
-          rowsPerPageOptions={[5, 10, 25]}
+          rowsPerPageOptions={rowsPerPageOptions}
           component="div"
           count={data?.length || 0}
           rowsPerPage={rowsPerPage}
           page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-          labelRowsPerPage="Users per page:"
+          onPageChange={onChangePage}
+          onRowsPerPageChange={onChangeRowsPerPage}
+          labelRowsPerPage={labelRowsPerPage}
         />
       )}
     </div>

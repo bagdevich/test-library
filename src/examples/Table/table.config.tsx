@@ -3,13 +3,13 @@ import React from "react";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 export const DataPaths = {
-  name: "firstname",
+  name: "name",
   email: "username",
   role: "role",
   phone: "phone",
   created: "created",
   lastLogin: "updated",
-  status: "status.active",
+  status: "status",
 };
 
 export const headCells = [
@@ -19,6 +19,7 @@ export const headCells = [
     disablePadding: true,
     label: "Name",
     extraClass: "cellFirst",
+    sort: true,
   },
 
   {
@@ -26,13 +27,15 @@ export const headCells = [
     numeric: false,
     disablePadding: true,
     label: "Role",
+    sort: true,
   },
   {
     id: DataPaths.status,
     numeric: false,
     disablePadding: true,
     label: "Status",
-    extraClass: "cellRootRightAlign",
+    sort: true,
+    // extraClass: "cellRootRightAlign",
   },
   {
     id: "more",
@@ -40,6 +43,7 @@ export const headCells = [
     disablePadding: true,
     label: "",
     extraClass: "cellLast",
+    sort: false,
   },
 ];
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-import search from "static/svg/search.svg";
+import search from "assets/svg/search.svg";
 import TextField from "../TextField";
 
 import useStyles from "./Search.styles";

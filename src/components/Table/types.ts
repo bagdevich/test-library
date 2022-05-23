@@ -1,4 +1,5 @@
 import { SyntheticEvent } from "react";
+import { NormalizedData } from "./helpers";
 
 export type TOrder = "asc" | "desc";
 
@@ -44,7 +45,8 @@ export interface CellItemProps {
 }
 
 export interface TableRowProps {
-  data: CellItemProps;
-  onClick: any;
-  keyField: any;
+  data?: { [key: string]: CellItemProps };
+  onClick?: any;
+  keyField?: string;
+  collapseItem?: NormalizedData[];
 }

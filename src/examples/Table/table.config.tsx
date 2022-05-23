@@ -80,3 +80,46 @@ export const mockData = [
   { id: 5, name: "User5", role: "user", status: "notactive" },
   { id: 6, name: "User6", role: "admin", status: "active" },
 ];
+
+export const mockDataCollapse = [
+  {
+    id: 1,
+    name: "Collapse 1",
+    role: "admin",
+    status: "active",
+    data: mockData.slice(0, 1),
+  },
+  {
+    id: 2,
+    name: "Collapse 2",
+    role: "admin",
+    status: "notactive",
+    data: mockData.slice(1, 2),
+  },
+  {
+    id: 3,
+    name: "Collapse 3",
+    role: "user",
+    status: "notactive",
+    data: mockData.slice(2, 3),
+  },
+  {
+    id: 4,
+    name: "Collapse 4",
+    role: "admin",
+    status: "active",
+  },
+  {
+    id: 5,
+    name: "Collapse 5",
+    role: "user",
+    status: "notactive",
+  },
+  {
+    id: 6,
+    name: "Collapse 6",
+    role: "admin",
+    status: "active",
+    data: mockData,
+  },
+];

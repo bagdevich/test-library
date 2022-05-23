@@ -32,7 +32,7 @@ export default (config?: TableSettingsProps): PaginationProps => {
     rowsPerPage,
     rowsPerPageOptions:
       config?.rowsPerPageOptions || defaultPagination.rowsPerPageOptions,
-    handleChangeRowsPerPage,
-    handleChangePage,
+    onChangeRowsPerPage: handleChangeRowsPerPage,
+    onChangePage: handleChangePage,
   };
 };

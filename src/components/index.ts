@@ -21,3 +21,5 @@ export type {
 export { default as Search } from "./Search";
 export { default as TextField } from "./TextField";
 export { default as SectionCard } from "./SectionCard";
+
+export { default as Select } from "./Select";

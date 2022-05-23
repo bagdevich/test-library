@@ -7,7 +7,9 @@ import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import sass from "rollup-plugin-sass";
 import copy from "rollup-plugin-copy-assets";
 import svgr from "@svgr/rollup";
+import alias from "@rollup/plugin-alias";
 // import babel from "@rollup/plugin-babel";
+var path = require("path");
 
 const packageJson = require("./package.json");
 
@@ -29,14 +31,18 @@ export default [
     ],
     plugins: [
       commonjs(),
-      peerDepsExternal(),
-      resolve({ jsnext: true, main: true, browser: true }),
-      // babel({ babelHelpers: "bundled" }),
-      sass({ insert: true }),
-      typescript({ tsconfig: "./tsconfig.json" }),
       copy({
         assets: ["src/assets"],
       }),
+      peerDepsExternal(),
+      alias({
+        entries: {
+          assets: path.resolve(__dirname, "./src/assets"),
+        },
+      }),
+      resolve({ jsnext: true, main: true, browser: true }),
+      sass({ insert: true }),
+      typescript({ tsconfig: "./tsconfig.json" }),
       svgr(),
       terser(),
     ],

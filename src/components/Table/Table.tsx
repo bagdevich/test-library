@@ -51,11 +51,15 @@ const Table: React.FC<TableProps> = ({
             {dataNormalizer(data, keyField, fieldExtractor)
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((item) => {
+                const [rowId, rowData, collapseItems] = item;
+
                 return (
                   <TableRow
-                    data={item[1]}
+                    key={rowId}
+                    keyField={rowId}
+                    data={rowData}
                     onClick={onRowClick}
-                    keyField={item[0]}
+                    collapseItem={collapseItems}
                   />
                 );
               })}

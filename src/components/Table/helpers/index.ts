@@ -2,28 +2,44 @@ import get from "lodash.get";
 
 import { CellItemProps } from "../types";
 
-type NormalizedData = [string, CellItemProps];
+interface ConfiguredItem {
+  [key: string]: CellItemProps;
+}
+
+export type NormalizedData = [string, ConfiguredItem, any];
+
+interface Extractor {
+  [key: string]: {
+    render: any;
+    onCellClick: any;
+  };
+}
 
 export const dataNormalizer = (
-  data: any,
+  data: any = [],
   keyField: string,
-  fieldExtractor: any
+  fieldExtractor: Extractor
 ): NormalizedData[] => {
   const res = data.map((item: any) => {
-    return [
-      item[keyField],
-      Object.entries(fieldExtractor).reduce((prev, current) => {
-        const [key, config] = current;
-        let newItem: CellItemProps;
+    const itemId = item[keyField];
 
-        newItem = {
-          ...config,
-          value: config.render(item[key], item[keyField]),
-        };
+    const itemsConfiguration: ConfiguredItem = Object.entries(
+      fieldExtractor
+    ).reduce((prev, current) => {
+      const [key, config] = current;
+      let newItem: CellItemProps;
 
-        return { ...prev, [key]: newItem };
-      }, {}),
-    ];
+      newItem = {
+        ...config,
+        value: config.render(item[key], item[keyField]),
+      };
+
+      return { ...prev, [key]: newItem };
+    }, {});
+
+    const collapseItem = item.data;
+
+    return [itemId, itemsConfiguration, collapseItem];
   });
 
   return res;
@@ -46,10 +62,6 @@ export const descendingComparator = (a, b, orderField) => {
 };
 
 export const getComparator = (order, orderField) => {
-  console.log(
-    "🚀 ~ file: index.ts ~ line 50 ~ getComparator ~ orderField",
-    orderField
-  );
   return order === "desc"
     ? (a, b) => descendingComparator(a, b, orderField)
     : (a, b) => -descendingComparator(a, b, orderField);
